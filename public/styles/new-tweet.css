@@ -1,0 +1,24 @@
+textarea {
+  width: 100%;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 4px solid rgb(77, 74, 74);
+  /* align-self: start; */
+}
+
+footer {
+ display: flex;
+ justify-content: space-between;
+ margin-top: 10px;
+}
+
+input {
+  font-family: "Bungee";
+  color: #FFFFFF;
+  background-color: #4056A1;
+}
+
+/* .counter {
+  text-align: right;
+} */
