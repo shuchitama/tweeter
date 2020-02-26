@@ -9,45 +9,6 @@
 
 $(document).ready(function () {
 
-  const tweetData = [
-    {
-      "user": {
-        "name": "Harry Potter",
-        "avatars": "../images/hpDP.jpg"
-        ,
-        "handle": "@hjpotter"
-      },
-      "content": {
-        "text": "There's no need to call me sir, professor"
-      },
-      "created_at": 1561116232227
-    },
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
-
-
   const renderTweets = function (tweets) {
     for (const element of tweets) {
       let tweet = createTweetElement(element)
@@ -82,16 +43,24 @@ $(document).ready(function () {
     return $tweet;
   }
 
-  renderTweets(tweetData);
+  let $form = $('form');
 
+  $form.on("submit", function (event) {
+    event.preventDefault();
+
+    // serialize the text inside the textbox
+    console.log("form.serialize:", $form.serialize());
+
+    // send POST request to server using ajax
+    $.ajax('/tweets', { method: 'POST', data: $form.serialize() })
+
+    // GET request to the server, recieve back array of tweets as JSON
+    const loadTweets = function () {
+      $.ajax('/tweets', { method: 'GET' })
+        .then((res) => {
+          renderTweets(res);
+        })
+    }
+    loadTweets();
+  })
 })
-
-
-// const printPassTimes = function (passTimes) {
-//   for (const pass of passTimes) {
-//     const datetime = new Date(0);
-//     datetime.setUTCSeconds(pass.risetime);
-//     const duration = pass.duration;
-//     console.log(`Next pass at ${datetime} for ${duration} seconds!`);
-//   }
-// };
