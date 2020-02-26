@@ -19,6 +19,6 @@ input {
   background-color: #4056A1;
 }
 
-/* .counter {
-  text-align: right;
-} */
+.fontred {
+  color: red;
+}

@@ -1,0 +1,44 @@
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid;
+  position: relative;
+  top: 50px;
+  background-image: none;
+  text-align: left;
+  opacity: 0.75;
+}
+
+article:hover {
+  box-shadow: 10px 5px gray;
+  opacity: 1;
+}
+
+.tweetHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.handle {
+  color: rgba(37, 36, 36, 0.45);
+  opacity: 0;
+}
+
+article:hover .handle {
+  opacity: 1;
+}
+
+p {
+  border-bottom: 4px solid rgb(77, 74, 74);
+  width: 95%;
+  align-self: center;
+}
+
+.tweetFooter {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 20px 5px ;
+  font-size: medium;
+}
