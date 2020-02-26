@@ -59,10 +59,10 @@ $(document).ready(function () {
     let $tweet =
       `<article>
       <header class="tweetHeader">
-        <div>
-          <img src=${tweet['user']['avatars']}>
-          ${tweet['user']['name']}
-          </div>
+        <div class="userInfo">
+          <div><img src=${tweet['user']['avatars']}></div>
+          <div class="userName">${tweet['user']['name']}</div>
+        </div>
         <div class="handle">
         ${tweet['user']['handle']}
           </div>
@@ -72,7 +72,7 @@ $(document).ready(function () {
         </p>
       <footer class="tweetFooter">
         <div>
-        ${timeDiff((new Date().getTime()), tweet['created_at'])}
+        ${moment(tweet['created_at']).fromNow()}
           </div>
         <div>
           🏳️🔁❤️
@@ -85,37 +85,6 @@ $(document).ready(function () {
   renderTweets(tweetData);
 
 })
-
-
-function timeDiff(current, previous) {
-
-  let msPerMinute = 60 * 1000;
-  let msPerHour = msPerMinute * 60;
-  let msPerDay = msPerHour * 24;
-  let msPerMonth = msPerDay * 30;
-  let msPerYear = msPerDay * 365;
-
-  let elapsed = current - previous;
-
-  switch (true) {
-    case (elapsed < msPerMinute):
-      return Math.round(elapsed / 1000) + ' seconds ago';
-    case (elapsed < msPerHour):
-      return Math.round(elapsed / msPerMinute) + ' minutes ago';
-    case (elapsed < msPerDay):
-      return Math.round(elapsed / msPerHour) + ' hours ago';
-    case (elapsed < msPerMonth):
-      return Math.round(elapsed / msPerDay) + ' days ago';
-    case (elapsed < msPerYear):
-      return Math.round(elapsed / msPerMonth) + ' months ago';
-    default:
-      return Math.round(elapsed / msPerYear) + ' years ago';
-  }
-}
-
-
-
-
 
 
 // const printPassTimes = function (passTimes) {

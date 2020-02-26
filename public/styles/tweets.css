@@ -8,7 +8,7 @@ article {
   background-image: none;
   text-align: left;
   opacity: 0.75;
-  margin: 20px;
+  margin: 20px auto;
 }
 
 article:hover {
@@ -24,6 +24,11 @@ article:hover {
 
 .userInfo {
   display: flex;
+}
+
+.userInfo .userName {
+  align-self: center;
+  margin-left: 10%;
 }
 
 .handle {
