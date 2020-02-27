@@ -9,13 +9,6 @@
 
 $(document).ready(function () {
 
-  const renderTweets = function (tweets) {
-    for (const element of tweets) {
-      let tweet = createTweetElement(element)
-      $('#tweets-container').prepend(tweet);
-    }
-  }
-
   const createTweetElement = function (tweet) {
     let $tweet =
       `<article>
@@ -43,17 +36,23 @@ $(document).ready(function () {
     return $tweet;
   }
 
+  const renderTweet = function (element) {
+    // for (const element of tweets) {
+    let tweet = createTweetElement(element)
+    $('#tweets-container').prepend(tweet);
+  }
+  // }
+
   let $form = $('form');
 
   $form.on("submit", function (event) {
     event.preventDefault();
 
-
     // serialize the text inside the textbox
     let serialized = $form.serialize();
 
     if (serialized.length === 5) {
-      alert("Please enter tweet content")
+      alert("Please enter tweet content!")
     } else {
       if (serialized.length > 145) {
         alert("Your tweet is too long!")
@@ -65,15 +64,13 @@ $(document).ready(function () {
         const loadTweets = function () {
           $.ajax('/tweets', { method: 'GET' })
             .then((res) => {
-              // console.log("Is it an array?: ", Array.isArray(res));
-              // console.log("res.length: ", res.length);
-              // console.log("recent tweet?: ", res[res.length - 1]);
 
-              renderTweets(res);
+              renderTweet(res[res.length - 1]);
             })
-        }
+        } // end of loadTweets fn definition
         loadTweets();
-      }
-    }
-  })
-})
+        $('textarea')[0].value = "";
+      } // end of ajax stuff
+    } // end of last else
+  }) // end of $form.onsubmit
+}) // end of document.ready
