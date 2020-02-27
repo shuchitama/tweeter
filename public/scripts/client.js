@@ -9,6 +9,12 @@
 
 $(document).ready(function () {
 
+  const escape = function (str) {
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
   const createTweetElement = function (tweet) {
     let $tweet =
       `<article>
@@ -22,7 +28,7 @@ $(document).ready(function () {
           </div>
       </header>
       <p>
-      ${tweet['content']['text']}
+      ${escape(tweet['content']['text'])}
         </p>
       <footer class="tweetFooter">
         <div>
@@ -43,6 +49,13 @@ $(document).ready(function () {
   }
   // }
 
+  const loadTweets = function () {
+    $.ajax('/tweets', { method: 'GET' })
+      .then((res) => {
+        renderTweet(res[res.length - 1]);
+      })
+  } // end of loadTweets fn definition
+
   let $form = $('form');
 
   $form.on("submit", function (event) {
@@ -51,26 +64,23 @@ $(document).ready(function () {
     // serialize the text inside the textbox
     let serialized = $form.serialize();
 
-    if (serialized.length === 5) {
-      alert("Please enter tweet content!")
-    } else {
-      if (serialized.length > 145) {
-        alert("Your tweet is too long!")
-      } else {
-        // send POST request to server using ajax
-        $.ajax('/tweets', { method: 'POST', data: serialized })
+    if ($('textarea')[0].value.length === 0) {
+      alert("Please enter tweet content!");
+      return;
+    }
+    if ($('textarea')[0].value.length > 140) {
+      alert("Your tweet is too long!");
+      $('textarea')[0].value = "";
+      return;
+    }
+    // send POST request to server using ajax
+    $.ajax('/tweets', { method: 'POST', data: serialized })
+      .then(() => {
+        loadTweets()
+        $('textarea')[0].value = ""
+      })
+    // GET request to the server, recieve back array of tweets as JSON
 
-        // GET request to the server, recieve back array of tweets as JSON
-        const loadTweets = function () {
-          $.ajax('/tweets', { method: 'GET' })
-            .then((res) => {
 
-              renderTweet(res[res.length - 1]);
-            })
-        } // end of loadTweets fn definition
-        loadTweets();
-        $('textarea')[0].value = "";
-      } // end of ajax stuff
-    } // end of last else
   }) // end of $form.onsubmit
 }) // end of document.ready
