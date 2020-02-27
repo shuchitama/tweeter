@@ -12,7 +12,7 @@ $(document).ready(function () {
   const renderTweets = function (tweets) {
     for (const element of tweets) {
       let tweet = createTweetElement(element)
-      $('#tweets-container').append(tweet);
+      $('#tweets-container').prepend(tweet);
     }
   }
 
@@ -48,19 +48,32 @@ $(document).ready(function () {
   $form.on("submit", function (event) {
     event.preventDefault();
 
+
     // serialize the text inside the textbox
-    console.log("form.serialize:", $form.serialize());
+    let serialized = $form.serialize();
 
-    // send POST request to server using ajax
-    $.ajax('/tweets', { method: 'POST', data: $form.serialize() })
+    if (serialized.length === 5) {
+      alert("Please enter tweet content")
+    } else {
+      if (serialized.length > 145) {
+        alert("Your tweet is too long!")
+      } else {
+        // send POST request to server using ajax
+        $.ajax('/tweets', { method: 'POST', data: serialized })
 
-    // GET request to the server, recieve back array of tweets as JSON
-    const loadTweets = function () {
-      $.ajax('/tweets', { method: 'GET' })
-        .then((res) => {
-          renderTweets(res);
-        })
+        // GET request to the server, recieve back array of tweets as JSON
+        const loadTweets = function () {
+          $.ajax('/tweets', { method: 'GET' })
+            .then((res) => {
+              // console.log("Is it an array?: ", Array.isArray(res));
+              // console.log("res.length: ", res.length);
+              // console.log("recent tweet?: ", res[res.length - 1]);
+
+              renderTweets(res);
+            })
+        }
+        loadTweets();
+      }
     }
-    loadTweets();
   })
 })
