@@ -15,9 +15,3 @@ $(document).ready(function () {
 
   });
 });
-
-// if ($charsLeft < 0) {
-//   $counter.addClass("fontRed");
-// } else {
-//   $counter.removeClass("fontRed");
-// }
