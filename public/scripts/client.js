@@ -6,8 +6,8 @@
 
 // Fake data taken from initial-tweets.json
 
-
 $(document).ready(function () {
+
 
   const escape = function (str) {
     let div = document.createElement('div');
@@ -27,7 +27,7 @@ $(document).ready(function () {
         ${tweet['user']['handle']}
           </div>
       </header>
-      <p>
+      <p class="content">
       ${escape(tweet['content']['text'])}
         </p>
       <footer class="tweetFooter">
@@ -43,11 +43,9 @@ $(document).ready(function () {
   }
 
   const renderTweet = function (element) {
-    // for (const element of tweets) {
     let tweet = createTweetElement(element)
     $('#tweets-container').prepend(tweet);
   }
-  // }
 
   const loadTweets = function () {
     $.ajax('/tweets', { method: 'GET' })
@@ -60,16 +58,20 @@ $(document).ready(function () {
 
   $form.on("submit", function (event) {
     event.preventDefault();
+    $(".no-text").slideUp(400);
+    $(".too-long").slideUp(400);
+    // console.log($(".too-long").display)
+    // console.log($(".no-text").display)
 
     // serialize the text inside the textbox
     let serialized = $form.serialize();
 
     if ($('textarea')[0].value.length === 0) {
-      alert("Please enter tweet content!");
+      $(".no-text").slideToggle(400);
       return;
     }
     if ($('textarea')[0].value.length > 140) {
-      alert("Your tweet is too long!");
+      $(".too-long").slideToggle(400);
       $('textarea')[0].value = "";
       return;
     }

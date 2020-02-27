@@ -40,7 +40,7 @@ article:hover .handle {
   opacity: 1;
 }
 
-p {
+.content {
   border-bottom: 4px solid rgb(77, 74, 74);
   width: 95%;
   align-self: center;

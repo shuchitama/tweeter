@@ -1,17 +1,36 @@
+.too-long,
+.no-text {
+  border: solid red;
+  color: red;
+  padding: 12px 0;
+  display: none;
+}
+
+.fa-exclamation-triangle {
+  color: red;
+  content: '\f06a';
+}
+
+.new-tweet p {
+  display: flex;
+  flex-direction: column;
+}
+
 textarea {
   width: 100%;
   border: 0;
   border-bottom: 4px solid rgb(77, 74, 74);
+  font-size: smaller;
 }
 
 footer {
  display: flex;
  justify-content: space-between;
  margin-top: 10px;
+ font-family: "Bungee";
 }
 
 input {
-  font-family: "Bungee";
   color: #FFFFFF;
   background-color: #4056A1;
 }

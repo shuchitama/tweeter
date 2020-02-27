@@ -50,13 +50,25 @@
   <main class="container">
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
-      <form method="POST" action="/tweets">
-        <textarea name="text" placeholder="What are you humming about?"></textarea>
-        <footer>
-          <input type="submit" value="Tweet">
-          <span class="counter">140</span>
-        </footer>
-      </form>
+      <p>
+        <span class="too-long">
+          <i class="fa fa-exclamation-triangle"></i>
+          Your message is too damn long
+          <i class="fa fa-exclamation-triangle"></i>
+        </span>
+        <span class="no-text">
+          <i class="fa fa-exclamation-triangle"></i>
+          Please type a tweet
+          <i class="fa fa-exclamation-triangle"></i>
+        </span>
+        <form method="POST" action="/tweets">
+          <textarea name="text" placeholder="What are you humming about?"></textarea>
+          <footer>
+            <input type="submit" value="Tweet">
+            <span class="counter">140</span>
+          </footer>
+        </form>
+      </p>
     </section>
 
     <section id="tweets-container">
