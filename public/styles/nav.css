@@ -11,6 +11,12 @@ nav {
   z-index: 999;
   padding: 1.5em;
 }
-span {
+
+.logo {
   font-family: "Bungee";
+}
+
+.toggle {
+  display: flex;
+  flex-direction: column;
 }
