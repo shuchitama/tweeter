@@ -1,4 +1,4 @@
-.topHeader {
+.top-header {
   height: 400px;
   width: 100%;
   display: flex;
@@ -10,14 +10,3 @@
   color:  #FFFFFF;
   background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
 }
-/* img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-} */
-
-/* h2 {
-  text-align: center;
-  color: #FFFFFF;
-  margin: 0;
-} */

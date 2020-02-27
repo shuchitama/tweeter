@@ -1,10 +1,7 @@
 textarea {
   width: 100%;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
+  border: 0;
   border-bottom: 4px solid rgb(77, 74, 74);
-  /* align-self: start; */
 }
 
 footer {
