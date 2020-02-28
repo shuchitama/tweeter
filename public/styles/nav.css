@@ -21,6 +21,12 @@ nav {
   }
 }
 
+@media (max-width: 400px) {
+  .slider {
+    display: none;
+  }
+}
+
 .logo {
   font-family: "Bungee";
 }
@@ -31,7 +37,12 @@ nav {
   align-items: center;
 }
 
-.fa-angle-double-down:before {
+.fa-angle-double-down {
   content: "\f103";
   color: #cf3429;
+}
+
+.fa-angle-double-down:hover {
+  cursor: pointer;
+  filter: drop-shadow(3px 4px 6px black);
 }
