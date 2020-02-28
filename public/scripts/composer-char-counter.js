@@ -1,9 +1,9 @@
 const txt = $('textarea');
-let $charsLeft;
+let $charsLeft, $counter;
 
-$(document).ready(function () {
+$(document).ready(function() {
   // count characters in the tweet textbox
-  txt.on("keyup", function () {
+  txt.on("keyup", function() {
     $charsLeft = (140 - $(this).val().length);
     $counter = $(this).siblings().find(".counter");
     $counter.text($charsLeft);

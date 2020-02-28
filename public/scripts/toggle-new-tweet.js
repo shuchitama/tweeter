@@ -1,11 +1,11 @@
 // show/hide new tweet textbox
-const toggleNewTweet = function () {
+const toggleNewTweet = function() {
   $(".toggle-btn").click(() => {
-    $(".new-tweet").slideToggle(400)
+    $(".new-tweet").slideToggle(400);
     $('textarea').focus();
-  })
-}
+  });
+};
 
-$(document).ready(function () {
+$(document).ready(function() {
   toggleNewTweet();
-})
+});

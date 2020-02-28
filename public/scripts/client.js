@@ -6,15 +6,15 @@
 
 // Fake data taken from initial-tweets.json
 
-const escape = function (str) {
+const escape = function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 
 
-}
+};
 
-const createTweetElement = function (tweet) {
+const createTweetElement = function(tweet) {
   let $tweet =
     `<article>
       <header class="tweetHeader">
@@ -41,43 +41,43 @@ const createTweetElement = function (tweet) {
       </footer>
     </article>`;
   return $tweet;
-}
+};
 
-const renderTweet = function (element) {
-  let tweet = createTweetElement(element)
+const renderTweet = function(element) {
+  let tweet = createTweetElement(element);
   $('#tweets-container').prepend(tweet);
-}
+};
 
-const renderTweets = function (tweetsData) {
+const renderTweets = function(tweetsData) {
   for (const element of tweetsData) {
-    let tweet = createTweetElement(element)
+    let tweet = createTweetElement(element);
     $('#tweets-container').prepend(tweet);
   }
-}
+};
 
 // GET request to the server, recieve back array of tweets as JSON
 // Render only the most recent tweets
-const loadTweet = function () {
+const loadTweet = function() {
   $.ajax('/tweets', { method: 'GET' })
     .then((res) => {
       renderTweet(res[res.length - 1]);
-    })
-}
+    });
+};
 // Render two tweets upon app launch
-const loadTweets = function () {
+const loadTweets = function() {
   $.ajax('/tweets', { method: 'GET' })
     .then((res) => {
       renderTweets(res);
-    })
-}
+    });
+};
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   loadTweets();
 
   let $form = $('form');
 
-  $form.on("submit", function (event) {
+  $form.on("submit", function(event) {
     event.preventDefault();
     $(".no-text").slideUp(400);
     $(".too-long").slideUp(400);
@@ -101,7 +101,7 @@ $(document).ready(function () {
         loadTweet();
         $('textarea')[0].value = "";
         $('.counter')[0].innerHTML = 140;
-      })
+      });
 
-  }) // end of $form.onsubmit
-}) // end of document.ready
+  }); // end of $form.onsubmit
+}); // end of document.ready
