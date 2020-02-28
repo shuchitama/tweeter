@@ -6,18 +6,17 @@
 
 // Fake data taken from initial-tweets.json
 
-$(document).ready(function () {
+const escape = function (str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
 
 
-  const escape = function (str) {
-    let div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
+}
 
-  const createTweetElement = function (tweet) {
-    let $tweet =
-      `<article>
+const createTweetElement = function (tweet) {
+  let $tweet =
+    `<article>
       <header class="tweetHeader">
         <div class="userInfo">
           <div><img src=${tweet['user']['avatars']}></div>
@@ -41,36 +40,39 @@ $(document).ready(function () {
         </div>
       </footer>
     </article>`;
-    return $tweet;
-  }
+  return $tweet;
+}
 
-  const renderTweet = function (element) {
+const renderTweet = function (element) {
+  let tweet = createTweetElement(element)
+  $('#tweets-container').prepend(tweet);
+}
+
+const renderTweets = function (tweetsData) {
+  for (const element of tweetsData) {
     let tweet = createTweetElement(element)
     $('#tweets-container').prepend(tweet);
   }
+}
 
-  const renderTweets = function (tweetsData) {
-    for (const element of tweetsData) {
-      let tweet = createTweetElement(element)
-      $('#tweets-container').prepend(tweet);
-    }
-  }
+// GET request to the server, recieve back array of tweets as JSON
+// Render only the most recent tweets
+const loadTweet = function () {
+  $.ajax('/tweets', { method: 'GET' })
+    .then((res) => {
+      renderTweet(res[res.length - 1]);
+    })
+}
+// Render two tweets upon app launch
+const loadTweets = function () {
+  $.ajax('/tweets', { method: 'GET' })
+    .then((res) => {
+      renderTweets(res);
+    })
+}
 
-  // GET request to the server, recieve back array of tweets as JSON
-  // Render only the most recent tweets
-  const loadTweet = function () {
-    $.ajax('/tweets', { method: 'GET' })
-      .then((res) => {
-        renderTweet(res[res.length - 1]);
-      })
-  }
-  // Render two tweets upon app launch
-  const loadTweets = function () {
-    $.ajax('/tweets', { method: 'GET' })
-      .then((res) => {
-        renderTweets(res);
-      })
-  }
+$(document).ready(function () {
+
   loadTweets();
 
   let $form = $('form');

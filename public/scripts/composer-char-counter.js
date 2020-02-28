@@ -1,7 +1,7 @@
-$(document).ready(function () {
-  const txt = $('textarea');
-  let $charsLeft;
+const txt = $('textarea');
+let $charsLeft;
 
+$(document).ready(function () {
   // count characters in the tweet textbox
   txt.on("keyup", function () {
     $charsLeft = (140 - $(this).val().length);
