@@ -47,12 +47,27 @@ $(document).ready(function () {
     $('#tweets-container').prepend(tweet);
   }
 
-  const loadTweets = function () {
+  const renderTweets = function (tweetsData) {
+    for (const element of tweetsData) {
+      let tweet = createTweetElement(element)
+      $('#tweets-container').prepend(tweet);
+    }
+  }
+
+  const loadTweet = function () {
     $.ajax('/tweets', { method: 'GET' })
       .then((res) => {
         renderTweet(res[res.length - 1]);
       })
-  } // end of loadTweets fn definition
+  }
+
+  const loadTweets = function () {
+    $.ajax('/tweets', { method: 'GET' })
+      .then((res) => {
+        renderTweets(res);
+      })
+  }
+  loadTweets();
 
   let $form = $('form');
 
@@ -78,7 +93,7 @@ $(document).ready(function () {
     // send POST request to server using ajax
     $.ajax('/tweets', { method: 'POST', data: serialized })
       .then(() => {
-        loadTweets()
+        loadTweet()
         $('textarea')[0].value = ""
       })
     // GET request to the server, recieve back array of tweets as JSON
