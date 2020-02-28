@@ -93,8 +93,9 @@ $(document).ready(function () {
     // send POST request to server using ajax
     $.ajax('/tweets', { method: 'POST', data: serialized })
       .then(() => {
-        loadTweet()
-        $('textarea')[0].value = ""
+        loadTweet();
+        $('textarea')[0].value = "";
+        $('.counter')[0].innerHTML = 140;
       })
     // GET request to the server, recieve back array of tweets as JSON
 
