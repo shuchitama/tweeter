@@ -33,10 +33,12 @@ $(document).ready(function () {
       <footer class="tweetFooter">
         <div>
         ${moment(tweet['created_at']).fromNow()}
-          </div>
-        <div>
-          🏳️🔁❤️
-          </div>
+        </div>
+        <div class="icons">
+          <i class="fa fa-flag"></i>
+          <i class="fa fa-retweet"></i>
+          <i class="fa fa-heart"></i>
+        </div>
       </footer>
     </article>`;
     return $tweet;

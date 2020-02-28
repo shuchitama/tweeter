@@ -8,7 +8,10 @@
 
 .fa-exclamation-triangle {
   color: red;
-  content: '\f06a';
+}
+
+.new-tweet {
+  display: none;
 }
 
 .new-tweet p {

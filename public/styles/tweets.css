@@ -31,12 +31,13 @@ article:hover {
   margin-left: 10%;
 }
 
-.handle {
+.handle, .icons {
   color: rgba(37, 36, 36, 0.45);
   opacity: 0;
 }
 
-article:hover .handle {
+article:hover .handle,
+article:hover .icons {
   opacity: 1;
 }
 
