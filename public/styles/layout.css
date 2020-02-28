@@ -5,34 +5,43 @@
  */
 html {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
-/*
- * Global layout stuff
- */
-
 body {
+  display: flex;
+  flex-direction: column;
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
   font-family: Source Sans Pro, sans-serif ;
 }
 
-
-/*
-* Additional CSS can be defined below or in other CSS files, as per instructions
-*/
-
 main {
-  /* display: flex; */
-  /* position: relative; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
   width: 90%;
   text-align: center;
   margin: 0 auto;
   background-color: #f4f1ec;
 }
+
+@media (min-width: 768px) {
+  .all-content {
+    display: flex;
+    flex-direction: row;
+  }
+  main {
+    margin-right: 5%;
+  }
+}
+
+.all-content {
+  margin-top: 15%;
+  justify-content: space-between;
+}
+

@@ -4,12 +4,21 @@ nav {
   align-items: center;
   position: fixed;
   top: 0px;
-  background-color: #4056A1;
   height: 120px;
   color: #FFFFFF;
+  background-color: #4056A1;
   width: 100%;
   z-index: 999;
   padding: 1.5em;
+}
+
+@media (max-width: 768px) {
+  nav {
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+  }
+  img {
+    z-index: 1000
+  }
 }
 
 .logo {

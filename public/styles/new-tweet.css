@@ -23,7 +23,7 @@ textarea {
   font-size: smaller;
 }
 
-footer {
+.text-footer {
  display: flex;
  justify-content: space-between;
  margin-top: 10px;
