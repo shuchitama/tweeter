@@ -1,6 +1,6 @@
 # Tweeter Project
 
-Tweeter is a simple, single-page Twitter clone.
+Tweeter is a simple, single-page Twitter clone. A tweet of less than 140 characters can be written in a text box, and upon submission, are rendered onto the screen.
 
 ## Dependencies
 
