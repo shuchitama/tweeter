@@ -1,3 +1,4 @@
+// show/hide new tweet textbox
 const toggleNewTweet = function () {
   $(".toggle-btn").click(() => {
     $(".new-tweet").slideToggle(400)

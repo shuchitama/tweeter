@@ -56,13 +56,15 @@ $(document).ready(function () {
     }
   }
 
+  // GET request to the server, recieve back array of tweets as JSON
+  // Render only the most recent tweets
   const loadTweet = function () {
     $.ajax('/tweets', { method: 'GET' })
       .then((res) => {
         renderTweet(res[res.length - 1]);
       })
   }
-
+  // Render two tweets upon app launch
   const loadTweets = function () {
     $.ajax('/tweets', { method: 'GET' })
       .then((res) => {
@@ -77,8 +79,6 @@ $(document).ready(function () {
     event.preventDefault();
     $(".no-text").slideUp(400);
     $(".too-long").slideUp(400);
-    // console.log($(".too-long").display)
-    // console.log($(".no-text").display)
 
     // serialize the text inside the textbox
     let serialized = $form.serialize();
@@ -93,14 +93,13 @@ $(document).ready(function () {
       return;
     }
     // send POST request to server using ajax
+    // load and render tweet onto the display
     $.ajax('/tweets', { method: 'POST', data: serialized })
       .then(() => {
         loadTweet();
         $('textarea')[0].value = "";
         $('.counter')[0].innerHTML = 140;
       })
-    // GET request to the server, recieve back array of tweets as JSON
-
 
   }) // end of $form.onsubmit
 }) // end of document.ready
